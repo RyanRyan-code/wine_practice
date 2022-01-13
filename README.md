@@ -10,12 +10,12 @@ In Intelli J, run the main application.
 
 The initialization function will create two tables in the database named 'wine_lots'. 
 
-It will also upload three lotcodes together with all their information integrated into the database. 
-
+It will also upload three lotcodes together with all their information integrated into the database. The information of the three lotcodes are stored in json files in the folder "/init data".
 
 
 # about the database:
 the database has two tables. The table 'wine_lot_codes' has all the lotcodes and their basic information. The table 'wine_component' has the information of components which are used to produce the query results
+
 
 # functions of the application:
 the application has two functions:
