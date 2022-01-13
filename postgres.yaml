@@ -2,12 +2,13 @@ version: '3'
 
 services:
   postgres:
-    image: riponway2a/wine_breakdown_demo:postgres_with_data
+    image: postgres
     ports:
      - 5433:5432
     environment:
        - POSTGRES_USERNAME=postgres
        - POSTGRES_PASSWORD=Dave060480
+       - POSTGRES_DB=wine_lots
   pgadmin:
     image: dpage/pgadmin4
     ports:
