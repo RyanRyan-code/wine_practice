@@ -1,10 +1,6 @@
 version: '3'
 
 services:
-  wine_practice:
-    image: riponway2a/wine_breakdown_demo:wine_practice
-    ports:
-      - 8080:8080
   postgres:
     image: postgres
     ports:
