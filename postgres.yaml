@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  postgres:
+    image: riponway2a/wine_breakdown_demo:postgres_with_data
+    ports:
+     - 5433:5432
+    environment:
+       - POSTGRES_USERNAME=postgres
+       - POSTGRES_PASSWORD=Dave060480
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=riponway2a@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=Dave060480
+
+
