@@ -14,7 +14,11 @@ It will also upload three lotcodes together with all their information integrate
 
 
 # about the database:
-the database has two tables. The table 'wine_lot_codes' has all the lotcodes and their basic information. The table 'wine_component' has the information of components which are used to produce the query results
+The database has two tables. 
+
+The table 'wine_lot_codes' has all the lotcodes and their basic information. 
+
+The table 'wine_component' has the information of components which are used to produce the query results
 
 
 # functions of the application:
