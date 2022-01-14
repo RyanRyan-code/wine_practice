@@ -6,7 +6,7 @@ The database should now be receiving data from port 5433. the database needs yet
 
 Now it only has the dafault database and no tables.
 # 2. 
-In Intelli J, run the main application. 
+In Intelli J, run the main application class "WineBreakdownApiApplication". 
 
 The initialization function will create two tables in the database named 'wine_lots'. 
 
