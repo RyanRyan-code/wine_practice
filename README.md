@@ -1,6 +1,6 @@
 # How to run:
 # 1. 
-In the terminal, go to the directory of postgres.yml, then $ docker-compose -f postgres.yaml up 
+In the terminal, go to the directory of postgres.yaml, then $ docker-compose -f postgres.yaml up 
 
 The database should now be receiving data from port 5433. the database needs yet to be initialized. 
 
