@@ -71,6 +71,8 @@ public class InitDatabase {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (SQLException e){
+            System.out.println("already initialized before");
         }
 
     }
