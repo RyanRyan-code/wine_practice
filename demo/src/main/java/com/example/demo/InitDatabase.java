@@ -22,7 +22,6 @@ public class InitDatabase {
 
         try {
 
-
             Connection conn_wine = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5433/wine_lots",
                     "postgres",
@@ -45,11 +44,9 @@ public class InitDatabase {
             String url = "http://localhost:8080/api/post";
 
 
-
             for(File file:files){
 
                 String content = Files.readString(file.toPath());
-                System.out.println(content);
 
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(url))
@@ -58,11 +55,7 @@ public class InitDatabase {
                         .build();
 
                 HttpResponse<String> response = httpClient.send(request,HttpResponse.BodyHandlers.ofString());
-                System.out.println(response);
-
             }
-
-
 
 
         }catch (FileNotFoundException e) {
