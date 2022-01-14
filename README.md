@@ -2,7 +2,7 @@
 # 1. 
 In the terminal, go to the directory of postgres.yaml, then $ docker-compose -f postgres.yaml up 
 
-The database should now be receiving data from port 5433. the database needs yet to be initialized. 
+The database should now be open at port 5433. the database needs yet to be initialized. 
 
 Now it only has the dafault database and no tables.
 # 2. 
