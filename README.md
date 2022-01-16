@@ -1,24 +1,23 @@
 # How to run:
 # 1. 
-In the terminal, go to the directory of postgres.yml, then $ docker-compose -f postgres.yml up 
+In the terminal, go to the directory of postgres.yaml, then $ docker-compose -f postgres.yaml up 
 
-The database should now be receiving data from port 5433. the database needs yet to be initialized. 
+The database should now be open at port 5433. the database needs yet to be initialized. 
 
-Now it only has the dafault database and no tables
+Now it only has the dafault database and no tables.
 # 2. 
-In Intelli J, run the main application. 
+In Intelli J, run the main application class "WineBreakdownApiApplication". 
 
 The initialization function will create two tables in the database named 'wine_lots'. 
 
-It will also upload three lotcodes together with all their information integrated into the database. The information of the three lotcodes are stored in json files in the folder "/init data".
-
+It will also upload three lotcodes together with all their information integrated into the database. It extracts information from 3 json files located in the folder "/init data" and then uses java HttpRequest to post them to localhost:8080/api/post. 
 
 # about the database:
 The database has two tables. 
 
 The table 'wine_lot_codes' has all the lotcodes and their basic information. 
 
-The table 'wine_component' has the information of components which are used to produce the query results
+The table 'wine_component' stores the information of components from all lotcdes, which are used to produce the query results.
 
 
 # functions of the application:
