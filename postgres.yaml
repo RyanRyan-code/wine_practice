@@ -2,7 +2,7 @@ version: '3'
 
 services:
   wine_demo:
-    image: riponway2a/wine_breakdown_demo:wine_practice
+    image: riponway2a/wine_breakdown_demo:wine_practice_mac
     ports:
       - 8080:8080
   postgres:
