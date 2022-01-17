@@ -1,17 +1,13 @@
 package com.example.demo;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.util.StringUtils;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RestController
 public class LotCodeController {
@@ -24,6 +20,9 @@ public class LotCodeController {
         this.lotCodeRepository = lotCodeRepository;
         this.componentRepository = componentRepository;
     }
+
+    //***Don't use this***
+    /*
 
     @PostMapping("/api/post")
     public void newLot(@RequestBody String string){
@@ -43,6 +42,26 @@ public class LotCodeController {
         }
     }
 
+     */
+
+    //use this
+    @PostMapping("/api/post")
+    public void newLot(@RequestBody LotCodeWithComponents lotCodeWithComponents){
+
+        LotCode lotCode = new LotCode(lotCodeWithComponents);
+        lotCodeRepository.saveAndFlush(lotCode);
+
+        ArrayList<WineComponent> components = lotCodeWithComponents.getComponents();
+
+        for(WineComponent component:components){
+            component.setLotcode(lotCodeWithComponents.getLotCode());
+            componentRepository.saveAndFlush(component);
+        }
+    }
+
+
+    //***Don't use this***
+    /*
     @GetMapping("/api/breakdown/{search_type}/{lc}")
     public JsonObject yearBreakdown(@PathVariable String search_type, @PathVariable String lc){
 
@@ -79,6 +98,8 @@ public class LotCodeController {
             }
         }
 
+
+
         List<String> keys = new ArrayList<>(hashMap.keySet());
         List<Integer> sorted_percentage = new ArrayList<>(hashMap.values());
         Collections.sort(sorted_percentage, Collections.reverseOrder());
@@ -102,31 +123,49 @@ public class LotCodeController {
         JsonObject jsonObject = gson.fromJson(answer, JsonObject.class);
 
         return  jsonObject;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
+     */
 
+    //use this
+    @GetMapping(value = "/api/breakdown/{search_type}/{lc}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public BreakdownResult wineBreakdown(@PathVariable String search_type, @PathVariable String lc) throws Exception {
+
+        List<String> valid_types = Arrays.asList("year", "variety", "region", "year-variety");
+        if (!valid_types.contains(search_type)){
+            throw new Exception("search type is not valid!");
+        }else{
+            try {
+                String query_lotcode = lotCodeRepository.findLotCodeByLotCode(lc).getLotCode();
+            }catch (NullPointerException e){
+                throw new Exception("lotcode does not exist! or something else");
+            }
+        }
+
+
+
+
+        BreakdownResult breakdownResult = new BreakdownResult(search_type);
+
+        List<WineComponent> components = componentRepository.findWineComponentsByLotcode(lc);
+
+        List<String> keys = components.stream().map(x->x.getByString(search_type)).distinct().collect(Collectors.toList());
+
+        List<Integer> percentages = new ArrayList<>();
+
+        keys.forEach(x->percentages.add(components.stream().filter(c->c.getByString(search_type).equals(x)).map(c->c.getPercentage()).reduce(0, Integer::sum)));
+
+        List<Integer> percentages_sorted = percentages.stream().sorted(Comparator.reverseOrder()).distinct().collect(Collectors.toList());
+
+        for (Integer percentage : percentages_sorted){
+            int[] indices = IntStream.range(0,keys.size()).filter(i->percentages.get(i)==percentage).toArray();
+            Arrays.stream(indices).forEach(i->breakdownResult.addNewPair(percentage, keys.get(i)));
+
+
+        }
+
+        return breakdownResult;
+    }
 
 }

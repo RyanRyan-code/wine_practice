@@ -28,6 +28,27 @@ public class WineComponent {
         this.region = region;
     }
 
+    public String getByString(String s){
+        String string_to_return = null;
+
+        switch (s){
+            case "year":
+                string_to_return = this.year;
+                break;
+            case "variety":
+                string_to_return = this.variety;
+                break;
+            case "region":
+                string_to_return = this.region;
+                break;
+            case "year-variety":
+                string_to_return = this.year + " " + this.variety;
+                break;
+        }
+
+        return string_to_return;
+    }
+
     public void setLotcode(String lotcode) {
         this.lotcode = lotcode;
     }

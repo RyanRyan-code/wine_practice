@@ -1,14 +1,8 @@
 package com.example.demo;
 
-import javax.persistence.*;
+import java.util.ArrayList;
 
-@Entity
-@Table(name = "wine_lot_codes")
-public class LotCode {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+public class LotCodeWithComponents {
 
     private String lotCode;
     private double volume;
@@ -17,32 +11,7 @@ public class LotCode {
     private String productState;
     private String ownerName;
 
-    public LotCode() {
-    }
-
-    public LotCode(String lotCode, double volume, String description, String tankCode, String productionState, String ownerName) {
-
-        this.lotCode = lotCode;
-        this.volume = volume;
-        this.description = description;
-        this.tankCode = tankCode;
-        this.productState = productionState;
-        this.ownerName = ownerName;
-    }
-
-    public LotCode(LotCodeWithComponents lotCodeWithComponents){
-        this.lotCode = lotCodeWithComponents.getLotCode();
-        this.volume = lotCodeWithComponents.getVolume();
-        this.description = lotCodeWithComponents.getDescription();
-        this.tankCode = lotCodeWithComponents.getTankCode();
-        this.productState = lotCodeWithComponents.getProductState();
-        this.ownerName = lotCodeWithComponents.getOwnerName();
-
-    }
-
-    public int getID() {
-        return ID;
-    }
+    ArrayList<WineComponent> components = new ArrayList<>();
 
     public String getLotCode() {
         return lotCode;
@@ -76,12 +45,12 @@ public class LotCode {
         this.tankCode = tankCode;
     }
 
-    public String getProductionState() {
+    public String getProductState() {
         return productState;
     }
 
-    public void setProductionState(String productionState) {
-        this.productState = productionState;
+    public void setProductState(String productState) {
+        this.productState = productState;
     }
 
     public String getOwnerName() {
@@ -92,16 +61,26 @@ public class LotCode {
         this.ownerName = ownerName;
     }
 
+    public ArrayList<WineComponent> getComponents() {
+        return components;
+    }
+
+    public void setComponents(ArrayList<WineComponent> components) {
+        this.components = components;
+    }
+
     @Override
     public String toString() {
-        return "LotCode{" +
-                "ID=" + ID +
-                ", lotCode='" + lotCode + '\'' +
+        return "LotCodeWithComponents{" +
+                "lotCode='" + lotCode + '\'' +
                 ", volume=" + volume +
                 ", description='" + description + '\'' +
                 ", tankCode='" + tankCode + '\'' +
                 ", productState='" + productState + '\'' +
                 ", ownerName='" + ownerName + '\'' +
+                ", components=" + components +
                 '}';
     }
 }
+
+
