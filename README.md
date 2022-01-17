@@ -1,3 +1,21 @@
+
+# 18 January update:
+# How to run:
+In the terminal, go to the directory of postgres.yaml, then $ docker-compose -f postgres.yaml up 
+
+# using flyway migration for data initialization 
+# no more use of gson. now it uses two model classes: BreakdownResult and LotCodeWithComponents
+# no more use of examplematcher. 
+# now tells the user whether he gets the wrong search_type or wrong lotcode using exception message
+# tried to use stream for business logic but failed 
+
+
+
+
+
+
+
+
 # How to run:
 # 1. 
 In the terminal, go to the directory of postgres.yaml, then $ docker-compose -f postgres.yaml up 
