@@ -1,22 +1,25 @@
 
 # 18 January update:
-## How to run:
+### How to run:
 In the terminal, go to the directory of postgres.yaml, then $ docker-compose -f postgres.yaml up 
 
-## using flyway migration for data initialization 
-## no more use of gson. now it uses two model classes: BreakdownResult and LotCodeWithComponents
-## no more use of examplematcher. 
-## now tells the user whether he gets the wrong search_type or wrong lotcode using exception message
-## tried to use stream for business logic but failed 
+### 1.using flyway migration for data initialization 
+### 2.no more use of gson. now it uses two model classes: BreakdownResult and LotCodeWithComponents
+### 3..no more use of examplematcher. 
+### 4.now tells the user whether he gets the wrong search_type or wrong lotcode using exception message
+### 5.tried to use stream for business logic but failed 
+
+<br/>
+<br/>
+<br/>
 
 
 
 
 
 
-
-
-# How to run:
+## old doc:
+## How to run:
 # 1. 
 In the terminal, go to the directory of postgres.yaml, then $ docker-compose -f postgres.yaml up 
 
