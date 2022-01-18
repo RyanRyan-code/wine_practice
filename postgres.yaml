@@ -2,9 +2,11 @@ version: '3'
 
 services:
   wine_demo:
-    image: riponway2a/wine_breakdown_demo:wine_practice
+    image: riponway2a/wine_breakdown_demo:pleasework
     ports:
       - 8080:8080
+    depends_on:
+      - "postgres"
   postgres:
     image: postgres
     ports:

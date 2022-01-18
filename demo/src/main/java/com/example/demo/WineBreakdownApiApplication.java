@@ -15,7 +15,7 @@ public class WineBreakdownApiApplication {
 
 		Flyway flyway = Flyway
 				.configure()
-				.dataSource("jdbc:postgresql://localhost:5433/wine_lots",
+				.dataSource("jdbc:postgresql://postgres:5432/wine_lots",
 				"postgres",
 				"Dave060480")
 				.mixed(true)
