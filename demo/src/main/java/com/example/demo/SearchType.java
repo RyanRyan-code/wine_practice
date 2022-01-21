@@ -36,7 +36,16 @@ public enum SearchType {
         return false;
     }
 
-
+    public static SearchType getTypeByString(String s){
+        SearchType ans=null;
+        for (SearchType type:SearchType.values()){
+            if (type.getS().equals(s)){
+                ans = type;
+                break;
+            }
+        }
+        return ans;
+    }
 
 
 }

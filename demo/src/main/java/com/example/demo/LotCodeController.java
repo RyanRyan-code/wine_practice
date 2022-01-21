@@ -148,7 +148,7 @@ public class LotCodeController {
     @ResponseBody
     public BreakdownResult wineBreakdown(@PathVariable String search_type, @PathVariable String lc) throws Exception {
 
-        System.out.println(SearchType.REGION.getS());
+
 
         if (!SearchType.contains(search_type)){
             throw new Exception("search type is not valid!");
@@ -167,9 +167,9 @@ public class LotCodeController {
 
         BreakdownResult breakdownResult = new BreakdownResult(search_type);
 
-        /*
 
-        List<WineComponent> components = componentRepository.findWineComponentsByLotcode(lc);
+
+        List<WineComponent> components = lotCodeRepository.findById(lc).get().getComponents();
 
         List<String> keys = components.stream().map(x->x.getByString(search_type)).distinct().collect(Collectors.toList());
 
@@ -186,7 +186,9 @@ public class LotCodeController {
 
         }
 
-         */
+
+
+
 
         return breakdownResult;
     }
