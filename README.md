@@ -1,5 +1,6 @@
 # 21 January update:
 
+### 0.(now needs to run docker database and main.java separately)
 ### 1.added a foreign key to the entity
 ### 2.now using enum
 ### 3.updated exception
