@@ -1,3 +1,17 @@
+# 21 January update:
+
+### 1.added a foreign key the entity
+### 2.now using enum
+### 3.updated exception
+### 4.business logic is not updated. now it's empty
+
+
+
+<br/>
+<br/>
+<br/>
+
+
 
 # 18 January update:
 ### How to run:
