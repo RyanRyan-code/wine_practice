@@ -54,24 +54,13 @@ public class WineComponent {
     }
 
     public String getByString(String s){
-        String string_to_return = null;
 
-        switch (s){
-            case "year":
-                string_to_return = this.year;
-                break;
-            case "variety":
-                string_to_return = this.variety;
-                break;
-            case "region":
-                string_to_return = this.region;
-                break;
-            case "year-variety":
-                string_to_return = this.year + " " + this.variety;
-                break;
-        }
-
-        return string_to_return;
+        return switch (SearchType.valueOf(s)) {
+            case YEAR -> this.year;
+            case VARIETY -> this.variety;
+            case REGION -> this.region;
+            case YEAR_VARIETY -> this.year + " " + this.variety;
+        };
     }
 
 

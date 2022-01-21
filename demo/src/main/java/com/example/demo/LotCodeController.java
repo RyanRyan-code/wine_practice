@@ -45,7 +45,7 @@ public class LotCodeController {
      */
 
     /*
-    //use this
+    //don't use this
     @PostMapping("/api/post")
     public void newLot(@RequestBody LotCodeWithComponents lotCodeWithComponents){
 
@@ -148,15 +148,18 @@ public class LotCodeController {
     @ResponseBody
     public BreakdownResult wineBreakdown(@PathVariable String search_type, @PathVariable String lc) throws Exception {
 
-        List<String> valid_types = Arrays.asList("year", "variety", "region", "year-variety");
-        if (!valid_types.contains(search_type)){
+        System.out.println(SearchType.REGION.getS());
+
+        if (!SearchType.contains(search_type)){
             throw new Exception("search type is not valid!");
         }else{
-            try {
-                String query_lotcode = lotCodeRepository.findLotCodeByLotCode(lc).getLotCode();
-            }catch (NullPointerException e){
+            boolean lotCodeExists = lotCodeRepository.existsById(lc);
+
+            if(!lotCodeExists){
                 throw new Exception("lotcode does not exist! or something else");
             }
+
+
         }
 
 
