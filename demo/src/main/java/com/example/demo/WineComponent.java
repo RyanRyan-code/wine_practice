@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.context.annotation.Bean;
+
 import javax.persistence.*;
 
 
@@ -11,17 +13,40 @@ public class WineComponent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 
-    private String lotcode;
     private int percentage;
     private String year;
     private String variety;
     private String region;
 
+
+    @ManyToOne
+    @JoinColumn(name = "lotcode")
+    private LotCode lotCode;
+
+
+    public LotCode getLotCode() {
+        return lotCode;
+    }
+
+    public void setLotCode(LotCode lotCode) {
+        this.lotCode = lotCode;
+    }
+
     public WineComponent() {
     }
 
-    public WineComponent(String lotcode, int percentage, String year, String variety, String region) {
-        this.lotcode = lotcode;
+
+    public WineComponent(int percentage, String year, String variety, String region, LotCode lotCode) {
+
+        this.percentage = percentage;
+        this.year = year;
+        this.variety = variety;
+        this.region = region;
+        this.lotCode = lotCode;
+    }
+
+    public WineComponent(int percentage, String year, String variety, String region) {
+
         this.percentage = percentage;
         this.year = year;
         this.variety = variety;
@@ -49,9 +74,7 @@ public class WineComponent {
         return string_to_return;
     }
 
-    public void setLotcode(String lotcode) {
-        this.lotcode = lotcode;
-    }
+
 
     public int getPercentage() {
         return percentage;
@@ -88,8 +111,7 @@ public class WineComponent {
     @Override
     public String toString() {
         return "WineComponent{" +
-                "ID=" + ID +
-                ", lotcode='" + lotcode + '\'' +
+                "ID=" + ID + ", lotcode:" + getLotCode().getLotCode() +
                 ", percentage=" + percentage +
                 ", year=" + year +
                 ", variety='" + variety + '\'' +

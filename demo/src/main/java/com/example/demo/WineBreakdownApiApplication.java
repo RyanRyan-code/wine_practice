@@ -13,6 +13,7 @@ public class WineBreakdownApiApplication {
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
 
+
 		Flyway flyway = Flyway
 				.configure()
 				.dataSource("jdbc:postgresql://postgres:5432/wine_lots",
@@ -22,6 +23,10 @@ public class WineBreakdownApiApplication {
 				.load();
 
 		flyway.migrate();
+
+
+
+
 
 
 

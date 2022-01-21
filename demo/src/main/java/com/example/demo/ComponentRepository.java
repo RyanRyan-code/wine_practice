@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface ComponentRepository extends JpaRepository<WineComponent,Integer>{
 
-    public List<WineComponent> findWineComponentsByLotcode (String lotcode);
+
 
 
 

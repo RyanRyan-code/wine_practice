@@ -23,18 +23,21 @@ public class InitDatabase {
         try {
 
             Connection conn_wine = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5433/wine_lots",
+                    "jdbc:postgresql://localhost:5432/wine_lots",
                     "postgres",
                     "Dave060480");
             Statement stm = conn_wine.createStatement();
 
-            String sql = "CREATE TABLE wine_component " +
+
+            String sql = "CREATE TABLE wine_lot_codes " +
+                    "(lot_code text PRIMARY KEY, volume real, description text, tank_code text, product_state text, owner_name text)";
+            stm.executeUpdate(sql);
+
+            sql = "CREATE TABLE wine_component " +
                     "(id SERIAL PRIMARY KEY, lotcode text, percentage int, region text, variety text, year text)";
             stm.executeUpdate(sql);
 
-            sql = "CREATE TABLE wine_lot_codes " +
-                    "(id SERIAL PRIMARY KEY, volume real, lot_code text UNIQUE, description text, tank_code text, product_state text, owner_name text)";
-            stm.executeUpdate(sql);
+
 
 
             File path = new File("./init data");
@@ -58,6 +61,8 @@ public class InitDatabase {
             }
 
 
+
+
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -65,7 +70,8 @@ public class InitDatabase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (SQLException e){
-            System.out.println("already initialized before");
+            System.out.println(e.getErrorCode());
+            e.printStackTrace();
         }
 
     }

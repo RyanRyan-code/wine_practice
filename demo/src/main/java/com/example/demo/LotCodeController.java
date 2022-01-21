@@ -44,6 +44,7 @@ public class LotCodeController {
 
      */
 
+    /*
     //use this
     @PostMapping("/api/post")
     public void newLot(@RequestBody LotCodeWithComponents lotCodeWithComponents){
@@ -57,6 +58,21 @@ public class LotCodeController {
             component.setLotcode(lotCodeWithComponents.getLotCode());
             componentRepository.saveAndFlush(component);
         }
+
+        LotCode lc;
+
+    }
+
+     */
+
+    @PostMapping("/api/post")
+    public void newLot(@RequestBody LotCode lc){
+
+        lc.getComponents().stream().forEach(x-> x.setLotCode(new LotCode(lc.getLotCode())));
+
+        lotCodeRepository.saveAndFlush(lc);
+
+
     }
 
 
@@ -148,6 +164,8 @@ public class LotCodeController {
 
         BreakdownResult breakdownResult = new BreakdownResult(search_type);
 
+        /*
+
         List<WineComponent> components = componentRepository.findWineComponentsByLotcode(lc);
 
         List<String> keys = components.stream().map(x->x.getByString(search_type)).distinct().collect(Collectors.toList());
@@ -164,6 +182,8 @@ public class LotCodeController {
 
 
         }
+
+         */
 
         return breakdownResult;
     }

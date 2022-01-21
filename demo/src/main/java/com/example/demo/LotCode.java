@@ -1,21 +1,48 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "wine_lot_codes")
 public class LotCode {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
-
     private String lotCode;
     private double volume;
     private String description;
     private String tankCode;
     private String productState;
     private String ownerName;
+
+    @OneToMany(mappedBy = "lotCode", cascade = CascadeType.ALL)
+    private List<WineComponent> components;
+
+
+
+    public List<WineComponent> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<WineComponent> components) {
+        this.components = components;
+    }
+
+    public LotCode (String s){
+        this.lotCode = s;
+    }
+
+    public LotCode(String lotCode, double volume, String description, String tankCode, String productState, String ownerName, List<WineComponent> components) {
+        this.lotCode = lotCode;
+        this.volume = volume;
+        this.description = description;
+        this.tankCode = tankCode;
+        this.productState = productState;
+        this.ownerName = ownerName;
+        this.components = components;
+
+    }
 
     public LotCode() {
     }
@@ -28,20 +55,6 @@ public class LotCode {
         this.tankCode = tankCode;
         this.productState = productionState;
         this.ownerName = ownerName;
-    }
-
-    public LotCode(LotCodeWithComponents lotCodeWithComponents){
-        this.lotCode = lotCodeWithComponents.getLotCode();
-        this.volume = lotCodeWithComponents.getVolume();
-        this.description = lotCodeWithComponents.getDescription();
-        this.tankCode = lotCodeWithComponents.getTankCode();
-        this.productState = lotCodeWithComponents.getProductState();
-        this.ownerName = lotCodeWithComponents.getOwnerName();
-
-    }
-
-    public int getID() {
-        return ID;
     }
 
     public String getLotCode() {
@@ -95,13 +108,13 @@ public class LotCode {
     @Override
     public String toString() {
         return "LotCode{" +
-                "ID=" + ID +
-                ", lotCode='" + lotCode + '\'' +
+                "lotCode='" + lotCode + '\'' +
                 ", volume=" + volume +
                 ", description='" + description + '\'' +
                 ", tankCode='" + tankCode + '\'' +
                 ", productState='" + productState + '\'' +
                 ", ownerName='" + ownerName + '\'' +
+                ", components=" + components +
                 '}';
     }
 }
