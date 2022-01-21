@@ -3,7 +3,7 @@
 ### 1.added a foreign key to the entity
 ### 2.now using enum
 ### 3.updated exception
-### 4.business logic is not updated. now it's empty
+### 4.realisation of business logic remains unchanged. how to make better use of stream()? 
 
 
 
