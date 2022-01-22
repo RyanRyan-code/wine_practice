@@ -148,39 +148,33 @@ public class LotCodeController {
     @ResponseBody
     public BreakdownResult wineBreakdown(@PathVariable String search_type, @PathVariable String lc) throws Exception {
 
-
-
         if (!SearchType.contains(search_type)){
             throw new Exception("search type is not valid!");
-        }else{
-            boolean lotCodeExists = lotCodeRepository.existsById(lc);
-
-            if(!lotCodeExists){
-                throw new Exception("lotcode does not exist! or something else");
-            }
-
-
         }
-
-
-
 
         BreakdownResult breakdownResult = new BreakdownResult(search_type);
 
-
-
-        List<WineComponent> components = lotCodeRepository.findById(lc).get().getComponents();
+        List<WineComponent> components = lotCodeRepository.findById(lc)
+                .orElseThrow(()->new Exception("lotcode does not exist! or something else"))
+                .getComponents();
 
         List<String> keys = components.stream().map(x->x.getByString(search_type)).distinct().collect(Collectors.toList());
 
         List<Integer> percentages = new ArrayList<>();
 
-        keys.forEach(x->percentages.add(components.stream().filter(c->c.getByString(search_type).equals(x)).map(c->c.getPercentage()).reduce(0, Integer::sum)));
+        keys.forEach(x->percentages.
+                add(components.stream()
+                        .filter(c->c.getByString(search_type).equals(x))
+                        .map(c->c.getPercentage())
+                        .reduce(0, Integer::sum)));
 
         List<Integer> percentages_sorted = percentages.stream().sorted(Comparator.reverseOrder()).distinct().collect(Collectors.toList());
 
         for (Integer percentage : percentages_sorted){
-            int[] indices = IntStream.range(0,keys.size()).filter(i->percentages.get(i)==percentage).toArray();
+            int[] indices = IntStream.range(0,keys.size())
+                    .filter(i->percentages.get(i)==percentage)
+                    .toArray();
+
             Arrays.stream(indices).forEach(i->breakdownResult.addNewPair(percentage, keys.get(i)));
 
 
