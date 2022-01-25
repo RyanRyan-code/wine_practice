@@ -1,3 +1,14 @@
+# 25 January update:
+### 0.(still needs to run docker database and main.java separately)
+### 1.updated status code and folder structure
+
+
+<br/>
+<br/>
+<br/>
+
+
+
 # 21 January update:
 
 ### 0.(now needs to run docker database and main.java separately)
