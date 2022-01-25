@@ -1,6 +1,4 @@
-package com.example.demo;
-
-import java.util.Arrays;
+package com.example.demo.util;
 
 public enum SearchType {
 

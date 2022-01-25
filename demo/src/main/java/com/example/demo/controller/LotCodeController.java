@@ -1,9 +1,19 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 
+import com.example.demo.exception.LotCodeNotFoundException;
+import com.example.demo.exception.SearchTypeNotFoundException;
+import com.example.demo.util.BreakdownResult;
+import com.example.demo.entity.LotCode;
+import com.example.demo.util.SearchType;
+import com.example.demo.entity.WineComponent;
+import com.example.demo.repository.ComponentRepository;
+import com.example.demo.repository.LotCodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -149,13 +159,14 @@ public class LotCodeController {
     public BreakdownResult wineBreakdown(@PathVariable String search_type, @PathVariable String lc) throws Exception {
 
         if (!SearchType.contains(search_type)){
-            throw new Exception("search type is not valid!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "search type is not valid!");
         }
 
         BreakdownResult breakdownResult = new BreakdownResult(search_type);
 
+
         List<WineComponent> components = lotCodeRepository.findById(lc)
-                .orElseThrow(()->new Exception("lotcode does not exist! or something else"))
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "lotcode does not exist! or something else"))
                 .getComponents();
 
         List<String> keys = components.stream().map(x->x.getByString(search_type)).distinct().collect(Collectors.toList());
@@ -181,6 +192,7 @@ public class LotCodeController {
         }
 
 
+        Boolean a;
 
 
 

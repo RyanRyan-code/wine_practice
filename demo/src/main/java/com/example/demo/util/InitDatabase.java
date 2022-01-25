@@ -1,6 +1,4 @@
-package com.example.demo;
-
-import org.postgresql.util.PSQLException;
+package com.example.demo.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;

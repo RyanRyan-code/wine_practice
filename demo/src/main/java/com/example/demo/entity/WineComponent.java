@@ -1,6 +1,6 @@
-package com.example.demo;
+package com.example.demo.entity;
 
-import org.springframework.context.annotation.Bean;
+import com.example.demo.util.SearchType;
 
 import javax.persistence.*;
 
@@ -17,7 +17,6 @@ public class WineComponent {
     private String year;
     private String variety;
     private String region;
-
 
     @ManyToOne
     @JoinColumn(name = "lotcode")
