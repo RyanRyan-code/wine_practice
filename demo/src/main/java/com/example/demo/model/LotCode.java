@@ -1,22 +1,33 @@
-package com.example.demo.entity;
+package com.example.demo.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "wine_lot_codes")
+@JsonPropertyOrder({"lotCode", "volume", "description", "tankCode", "productState", "ownerName", "components"})
 public class LotCode {
 
     @Id
     private String lotCode;
+
     private double volume;
+
     private String description;
+
     private String tankCode;
+
     private String productState;
+
     private String ownerName;
 
-    @OneToMany(mappedBy = "lotCode", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "lotcode", cascade = CascadeType.ALL)
     private List<WineComponent> components;
+
+
 
 
 
@@ -88,11 +99,11 @@ public class LotCode {
         this.tankCode = tankCode;
     }
 
-    public String getProductionState() {
+    public String getProductState() {
         return productState;
     }
 
-    public void setProductionState(String productionState) {
+    public void setProductState(String productionState) {
         this.productState = productionState;
     }
 
