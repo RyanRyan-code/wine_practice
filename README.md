@@ -2,7 +2,7 @@
 ### 0.(still needs to run docker database and main.java separately)
 ### 1.updated package structure. now it has a service package. 
 Controller(http mappings), business logic(service), models(entites and tables) are now three separated parts. Alse, business logic codes are now divided into more small functions. 
-### 2.updated the whole test system. 
+### 2.updated the whole test system. (tests are using h2 database which is open at localhost:8081)
 ### 3.added DeleteMapping and SearchMapping.
 
 
