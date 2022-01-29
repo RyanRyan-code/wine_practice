@@ -1,3 +1,15 @@
+# 30 January update:
+### 0.(still needs to run docker database and main.java separately)
+### 1.updated package structure. now it has a service package. 
+Controller(http mappings), business logic(service), models(entites and tables) are now three separated parts. Alse, business logic codes are now divided into more small functions. 
+### 2.updated the whole test system. 
+
+
+<br/>
+<br/>
+<br/>
+
+
 # 25 January update:
 ### 0.(still needs to run docker database and main.java separately)
 ### 1.updated status code and folder structure
