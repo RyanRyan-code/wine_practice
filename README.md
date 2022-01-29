@@ -3,6 +3,7 @@
 ### 1.updated package structure. now it has a service package. 
 Controller(http mappings), business logic(service), models(entites and tables) are now three separated parts. Alse, business logic codes are now divided into more small functions. 
 ### 2.updated the whole test system. 
+### 3.added DeleteMapping and SearchMapping.
 
 
 <br/>
